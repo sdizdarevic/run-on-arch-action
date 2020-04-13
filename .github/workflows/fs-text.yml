@@ -9,7 +9,7 @@ jobs:
       id: runcmd
       uses: uraimo/run-on-arch-action@master
       with:
-        architecture: aarch64
+        architecture: armv7
         distribution: ubuntu18.04
         run: |
           apt update
