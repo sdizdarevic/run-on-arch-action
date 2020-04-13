@@ -3,9 +3,9 @@ on: [push]
 jobs:
   testactions_job:
     runs-on: ubuntu-latest
-    name: A job to test the multi architecture action
+    name: Ext FS issue on qemued arms
     steps:
-    - name: Run some commands on arm64
+    - name: Run some commands on armv7
       id: runcmd
       uses: uraimo/run-on-arch-action@master
       with:
@@ -13,12 +13,12 @@ jobs:
         distribution: ubuntu18.04
         run: |
           apt update
-          apt install -y build-essential curl git
+          apt install -y build-essential curl git wget
           uname -a
           echo | gcc -v -E - 2>&1 | grep cc1
           lscpu | grep "Model name:" | sed -r 's/Model name:\s{1,}//g'
           cat /proc/meminfo | grep MemTotal | sed -r 's/MemTotal:\s{1,}//g'
-          wget https://static.rust-lang.org/dist/rust-1.42.0-arm-unknown-linux-gnueabihf.tar.gz
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
           export PATH=$PATH:$HOME/.cargo/bin
           git clone https://github.com/Y2Z/monolith.git
           cd monolith
