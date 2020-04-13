@@ -17,7 +17,7 @@ jobs:
           uname -a > output.txt
           echo | gcc -v -E - 2>&1 | grep cc1
           lscpu | grep "Model name:" | sed -r 's/Model name:\s{1,}//g'
-          cat /proc/meminfo | grep MemTotal | sed -r 's/MemTotal:\s{1,}//g
+          cat /proc/meminfo | grep MemTotal | sed -r 's/MemTotal:\s{1,}//g'
           curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
           git clone https://github.com/Y2Z/monolith.git
           cd monolith
