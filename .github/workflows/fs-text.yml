@@ -18,7 +18,8 @@ jobs:
           echo | gcc -v -E - 2>&1 | grep cc1
           lscpu | grep "Model name:" | sed -r 's/Model name:\s{1,}//g'
           cat /proc/meminfo | grep MemTotal | sed -r 's/MemTotal:\s{1,}//g'
-          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+          wget https://static.rust-lang.org/dist/rust-1.42.0-arm-unknown-linux-gnueabihf.tar.gz
+          export PATH=$PATH:$HOME/.cargo/bin
           git clone https://github.com/Y2Z/monolith.git
           cd monolith
           make install
