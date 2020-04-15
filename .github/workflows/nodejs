@@ -1,6 +1,23 @@
 on: [push]
+ 
+ 
 
 jobs:
+
+
+
+jobs:
+  release:
+    name: Release
+    strategy:
+      matrix:
+        os: [ ubuntu-18.04 ]
+        with:
+        architecture: armv7
+        distribution: ubuntu18.04
+    
+    runs-on: ${{ matrix.os }}
+    
   testactions_job:
     runs-on: ubuntu-18.04
     name: A job to test the multi architecture actions
@@ -19,4 +36,5 @@ jobs:
           cd node-v12.16.2
           ./configure
           make
+    
        
